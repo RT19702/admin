@@ -1,9 +1,11 @@
 <template>
   <div class="login-wrap">
     <el-row justify="center" type="flex" class="box">
-      <el-col :lg="8" span="24">
+      <el-col :lg="8" :span="24">
         <el-card class="box-card">
-          <h1 class="dom-mb-30">Console</h1>
+          <div class="images">
+            <img class="" src="~@/assets/images/guanli.png" alt="" />
+          </div>
           <el-form
             ref="formName"
             :model="form"
@@ -24,6 +26,7 @@
               ></el-input>
             </el-form-item>
             <el-button
+              :loading="loading"
               plain
               native-type="submit"
               class="button"
@@ -38,14 +41,16 @@
 </template>
 
 <script>
+
 export default {
   name: "AdminIndex",
 
   data() {
     return {
+      loading: false,
       form: {
-        username: "",
-        password: "",
+        username: "admin",
+        password: "123",
       },
       rules: {
         username: [
@@ -57,14 +62,25 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() {
+    
+  },
 
   methods: {
     submitFrom(formName) {
       this.$refs["formName"].validate((valid) => {
         console.log(valid);
         if (valid) {
-          console.log("验证成功");
+          this.loading = true;
+          this.$store
+            .dispatch("login", this.form)
+            .then(() => {
+              this.loading = false;
+              // this.$router.push('/');
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         } else {
           console.log("验证失败");
         }
@@ -81,6 +97,12 @@ export default {
   width: 100%;
   height: 100vh;
   position: relative;
+  .images {
+    text-align: center;
+    img {
+      width: 120px;
+    }
+  }
   .box {
     position: absolute;
     left: 50%;
@@ -90,7 +112,6 @@ export default {
   }
   .button {
     width: 100%;
-    background: ;
   }
 }
 </style>

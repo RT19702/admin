@@ -1,8 +1,9 @@
-import requests from '@/api/request'
+import request from '@/api/request'
 
-export const test = () => {
-  return requests({
-    url: '/product/getBaseCategoryList',
-    method: 'GET'
+export const register = (data) => {
+  return request({
+    url: '/user/login',
+    method: 'get',
+    data
   })
 }
