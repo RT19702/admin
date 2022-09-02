@@ -3,10 +3,10 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import tab from "./tab";
+import tab from "./tab/index";
 
 export default new Vuex.Store({
-  modules: [
+  modules: {
     tab
-  ]
-})
+  },
+});

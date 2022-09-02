@@ -7,6 +7,14 @@ export default new VueRouter({
   routes: [{
       path: '/',
       component: () => import('@/pages/Main.vue'),
+      children: [{
+        path: '/user',
+        component: () => import('@/pages/User'),
+      }, ]
+    },
+    {
+      path: '/login',
+      component: () => import('@/pages/Login')
     },
     {
       // 路由重定向

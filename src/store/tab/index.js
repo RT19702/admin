@@ -1,5 +1,11 @@
-const state = {};
-const mutations = {};
+const state = {
+  isCollapse: true
+};
+const mutations = {
+  fold(state) {
+    state.isCollapse = !state.isCollapse;
+  }
+};
 const actions = {};
 const getters = {};
 
