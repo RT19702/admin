@@ -6,7 +6,7 @@ import { login } from './User';
 Mock.setup({
   timeout: '300-600'
 })
-
-Mock.mock('/user/login', { login });
+// {login} 和 login 的值不同
+Mock.mock('/user/login', 'get', login);
 
 export default Mock;

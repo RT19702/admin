@@ -1,9 +1,10 @@
 import request from '@/api/request'
 
-export const register = (data) => {
+export const register = (params) => {
   return request({
     url: '/user/login',
     method: 'get',
-    data
+    // 接收请求的传参
+    data:params
   })
 }

@@ -12,7 +12,6 @@ const request = axios.create({
 request.interceptors.request.use(config => {
   // 进度条开始
   nprogress.start();
-  console.log(config);
   // 在发送请求之前做些什么
   return config;
 });

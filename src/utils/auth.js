@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'Admin-Token'
+// 设置默认TokenKey
+const TokenKey = 'Token'
 
 // 设置权限Cookie
 export function getToken(TokenKey) {

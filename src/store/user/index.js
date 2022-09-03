@@ -12,10 +12,12 @@ const mutations = {
 const actions = {
   async login({ commit }, userInfo) {
     let { username, password } = userInfo;
-    let result = await register();
+    // 传参给api/register
+    let result = await register(userInfo);
+    console.log(result);
     if (result.code == 200) {
       commit('SET_TOKEN', result.data.token);
-      setToken(result.data.token)
+      setToken('Token', result.data.token);
     } else {
       return Promise.reject(new Error(error));
     }

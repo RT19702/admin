@@ -41,7 +41,6 @@
 </template>
 
 <script>
-
 export default {
   name: "AdminIndex",
 
@@ -62,9 +61,7 @@ export default {
     };
   },
 
-  mounted() {
-    
-  },
+  mounted() {},
 
   methods: {
     submitFrom(formName) {
@@ -76,7 +73,7 @@ export default {
             .dispatch("login", this.form)
             .then(() => {
               this.loading = false;
-              // this.$router.push('/');
+              this.$router.push('/');
             })
             .catch(() => {
               this.loading = false;
@@ -97,6 +94,9 @@ export default {
   width: 100%;
   height: 100vh;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
   .images {
     text-align: center;
     img {
@@ -104,10 +104,6 @@ export default {
     }
   }
   .box {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
   }
   .button {
