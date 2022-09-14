@@ -14,23 +14,22 @@ const whiteList = ['/login', '/auth-redirect'] // 无重定向的名单
 router.beforeEach((to, from, next) => {
   nprogress.start()
   const hasToken = getToken('Token');
-  console.log(hasToken);
   //判断token是否存在
   if (hasToken) {
     //判断是否是登录
     if (to.path === '/login') {
       next({ path: '/' });
+    } else {
+      next();
     }
   } else {
     /* has no token*/
     //如果token不存在，判断是否存在白名单中
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
-      next()
+      next();
     } else {
-      // other pages that do not have permission to access are redirected to the login page.
-      next("/login")
-      nprogress.done();
+      next("/login");
     }
   }
+  nprogress.done();
 })

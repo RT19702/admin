@@ -7,22 +7,22 @@
             <img class="" src="~@/assets/images/guanli.png" alt="" />
           </div>
           <el-form
-            ref="formName"
-            :model="form"
+            ref="loginForm"
+            :model="formData"
             :rules="rules"
             label-width="80px"
             label-position="top"
           >
             <el-form-item label="账号" prop="username">
               <el-input
-                @keyup.enter.native="submitFrom('formName')"
-                v-model="form.username"
+                @keyup.enter.native="submitFrom('formData')"
+                v-model="formData.username"
               ></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
               <el-input
-                @keyup.enter.native="submitFrom('formName')"
-                v-model="form.password"
+                @keyup.enter.native="submitFrom('formData')"
+                v-model="formData.password"
               ></el-input>
             </el-form-item>
             <el-button
@@ -30,7 +30,7 @@
               plain
               native-type="submit"
               class="button"
-              @click.prevent="submitFrom(form)"
+              @click.prevent="submitFrom(formData)"
               >登录</el-button
             >
           </el-form>
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       loading: false,
-      form: {
+      formData: {
         username: "admin",
         password: "123",
       },
@@ -64,22 +64,19 @@ export default {
   mounted() {},
 
   methods: {
-    submitFrom(formName) {
-      this.$refs["formName"].validate((valid) => {
-        console.log(valid);
+    submitFrom(formData) {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
-          this.$store
-            .dispatch("login", this.form)
-            .then(() => {
-              this.loading = false;
-              this.$router.push('/');
-            })
-            .catch(() => {
-              this.loading = false;
-            });
+          this.$message.success("验证成功");
+          this.$store.dispatch("login", this.formData).then(()=>{
+            this.loading = false;
+            this.$router.push("/").catch((error) => console.log(error));
+          }).catch(()=>{
+            this.loading = false;
+          });
         } else {
-          console.log("验证失败");
+          this.$message.error("用户名或密码错误");
         }
       });
     },
