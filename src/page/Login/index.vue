@@ -41,10 +41,19 @@
 </template>
 
 <script>
+// 引入验证规则
+import { validUsername } from "@/utils/validate";
 export default {
   name: "AdminIndex",
-
   data() {
+    // 验证用户名规则
+    const validateUsername = (rule, value, callback) => {
+      if (!validUsername(value)) {
+        callback(new Error("请输入正确的用户名"));
+      } else {
+        callback();
+      }
+    };
     return {
       loading: false,
       formData: {
@@ -53,8 +62,11 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 2, max: 8, message: "长度在 2 到 8 个字符", trigger: "blur" },
+          {
+            required: true,
+            trigger: "blur",
+            validator: validateUsername,
+          },
         ],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
@@ -65,16 +77,20 @@ export default {
 
   methods: {
     submitFrom(formData) {
+      console.log(formData);
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
           this.$message.success("验证成功");
-          this.$store.dispatch("login", this.formData).then(()=>{
-            this.loading = false;
-            this.$router.push("/").catch((error) => console.log(error));
-          }).catch(()=>{
-            this.loading = false;
-          });
+          this.$store
+            .dispatch("user/login", this.formData)
+            .then(() => {
+              this.loading = false;
+              this.$router.push("/").catch((error) => console.log(error));
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         } else {
           this.$message.error("用户名或密码错误");
         }

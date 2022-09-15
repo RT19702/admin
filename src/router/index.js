@@ -6,15 +6,21 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [{
       path: '/',
-      component: () => import('@/pages/Main.vue'),
+      component: () => import('@/page/Main.vue'),
+      meta:{
+        title:'首页'
+      },
       children: [{
         path: '/user',
-        component: () => import('@/pages/User'),
+        component: () => import('@/page/User'),
+        meta:{
+          title:'个人中心'
+        }
       }, ]
     },
     {
       path: '/login',
-      component: () => import('@/pages/Login')
+      component: () => import('@/page/Login')
     },
     {
       // 路由重定向
