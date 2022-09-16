@@ -1,6 +1,6 @@
 <template>
   <div class="site-head">
-    <div class="d-flex align-items-center">
+    <div class="navigation">
       <div class="icon" @click="fold">
         <i class="el-icon-s-fold" v-show="!isCollapse"></i>
         <i class="el-icon-s-unfold" v-show="isCollapse"></i>
@@ -55,6 +55,10 @@ export default {
   height: 100%;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  .navigation{
+    display: flex;
+    align-items: center;
+  }
   .icon {
     font-size: 30px;
     margin-right: 15px;

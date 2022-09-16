@@ -1,5 +1,3 @@
-import Mock from 'mockjs';
-
 const tokens = {
   admin: {
     token: 'admin-token'

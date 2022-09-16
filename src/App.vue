@@ -12,7 +12,5 @@ export default {
 </script>
 
 <style>
-@import "~@/styles/layout.less";
-@import "~@/styles/spacing.less";
 @import "~@/styles/reset.css";
 </style>
