@@ -1,6 +1,7 @@
 import Mock from 'mockjs';
 
 import { login } from './User';
+import { listData } from './Articles';
 
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
@@ -8,5 +9,6 @@ Mock.setup({
 })
 // {login} 和 login 的值不同
 Mock.mock('/user/login', 'get', login);
+Mock.mock('/get/list', 'get', listData);
 
 export default Mock;

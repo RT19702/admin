@@ -9,7 +9,7 @@
         <div v-for="item in menu" :key="item.name">
           <h4 class="title">{{ item.name }}</h4>
           <el-menu-item
-            :index=item1.title
+            :index="item1.title"
             v-for="item1 in item.children"
             :key="item1.title"
             @click="clickPath(item1)"
@@ -32,6 +32,12 @@ export default {
       imgCollapse: require("@/assets/images/haixiaobao.png"),
       imgExpansion: require("@/assets/images/guanli.png"),
       menu: [
+        {
+          name: "Operation",
+          children: [
+            { icon: "el-icon-document-copy", title: "文章列表", path: "/articles" },
+          ],
+        },
         {
           name: "MENU",
           children: [

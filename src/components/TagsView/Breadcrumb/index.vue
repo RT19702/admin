@@ -27,7 +27,6 @@ export default {
         (item) => item.meta && item.meta.title
       );
       this.levelList = matched;
-      console.log(matched);
     },
   },
   created() {

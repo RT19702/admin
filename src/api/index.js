@@ -9,3 +9,10 @@ export const register = (params) => {
     data: params
   })
 }
+
+export const listData = () => {
+  return request({
+    url: '/get/list',
+    method: 'get',
+  })
+}
