@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 
-const list = [], count = 100
+const list = [], count = 10
 
 for (let i = 0; i < count; i++) {
   list.push(Mock.mock({
