@@ -1,6 +1,13 @@
 <template>
   <div>
-    <el-table :data="tableData" stripe style="width: 100%">
+    <el-table
+      max-height="720"
+      :data="tableData"
+      border
+      stripe
+      style="width: 100%"
+    >
+      <el-table-column type="selection" width="50"></el-table-column>
       <el-table-column
         :prop="item.type"
         v-for="item in formLabel"
@@ -9,13 +16,12 @@
         :width="item.width"
       >
       </el-table-column>
-
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small"
-            >查看</el-button
+          <el-button @click="handleClick(scope.row)" type="primary" size="small"
+            >编辑</el-button
           >
-          <el-button type="text" size="small">编辑</el-button>
+          <el-button type="danger" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -34,15 +40,14 @@ export default {
       default: [],
     },
   },
-  data() {
-    return {};
-  },
-
   mounted() {
     this.$store.dispatch;
   },
-
-  methods: {},
+  methods: {
+    handleClick(item) {
+      this.$emit("eventMessage", item);
+    },
+  },
 };
 </script>
 
