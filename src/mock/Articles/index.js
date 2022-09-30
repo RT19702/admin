@@ -7,9 +7,11 @@ for (let i = 0; i < count; i++) {
     id: '@increment',
     title: '@ctitle',
     createDate: '@date',
+    imageUrl:'@dataImage(200x100,Hello)'
   }))
 }
 
+// 列表数据
 export const listData = () => {
   return {
     code: 200,

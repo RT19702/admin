@@ -12,6 +12,7 @@ const actions = {
   async listItem({ commit }, userInfo) {
     // 传参给api/register
     let result = await listData(userInfo);
+    console.log(result);
     if (result.code == 200) {
       commit('LISTITEM', result.data);
     }

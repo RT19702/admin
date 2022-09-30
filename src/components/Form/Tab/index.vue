@@ -8,14 +8,18 @@
       style="width: 100%"
     >
       <el-table-column type="selection" width="50"></el-table-column>
+
       <el-table-column
         :prop="item.type"
-        v-for="item in formLabel"
+        v-for="(item,index) in formLabel"
         :key="item.label"
         :label="item.label"
         :width="item.width"
       >
+        <div v-if="item.type === 'imageUrl'">{{index}}</div>
+        <!-- <el-image v-if="item.type === 'imageUrl'" :src="tableData[index].imageUrl"></el-image> -->
       </el-table-column>
+
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="primary" size="small"
