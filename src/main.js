@@ -7,7 +7,7 @@ import store from './store';
 // mock模拟数据
 import '@/mock';
 import '@/permission';
-import './icons';
+// import './icons';
 
 Vue.config.productionTip = false
 
