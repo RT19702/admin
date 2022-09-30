@@ -86,11 +86,11 @@ export default {
         {
           label: "文章分类",
         },
-        {
-          label: "文章主图",
-          width: 80,
-          type: "imageUrl",
-        },
+        // {
+        //   label: "文章主图",
+        //   width: 80,
+        //   type: "imageUrl",
+        // },
         {
           label: "创建时间",
           type: "createDate",
