@@ -7,7 +7,7 @@ for (let i = 0; i < count; i++) {
     id: '@increment',
     title: '@ctitle',
     createDate: '@date',
-    imageUrl:'@dataImage(200x100,Hello)'
+    imageUrl:'@dataImage(200x70,Hello)'
   }))
 }
 

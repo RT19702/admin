@@ -48,6 +48,7 @@ export default {
         title: "",
         class: "",
         createDate: "",
+        imageUrl:""
       },
       // 模态框
       modalData: [
@@ -65,6 +66,11 @@ export default {
               value: "",
             },
           ],
+        },
+        {
+          model: "imageUrl",
+          type: "upload",
+          label: "文章图片",
         },
         {
           model: "createDate",
@@ -107,6 +113,7 @@ export default {
       this.formType = 'edit';
       this.formOperate.title = item.title;
       this.formOperate.createDate = item.createDate;
+      this.formOperate.imageUrl = item.imageUrl
     },
     confirm(){
       

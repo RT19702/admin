@@ -16,13 +16,11 @@
         :label="item.label"
         :width="item.width"
       >
-        <!-- <div v-if="item.type === 'imageUrl'">{{index}}</div> -->
-        <!-- <el-image v-if="item.type === 'imageUrl'" :src="tableData[index].imageUrl"></el-image> -->
       </el-table-column>
+
       <el-table-column label="图片" prop="imageUrl">
-        <!-- <el-image src="https://upload-bbs.mihoyo.com/upload/2022/09/29/5b3b99569a54dbb29f25a22c0df1ed50_5972992509859877552.png"></el-image> -->
         <template slot-scope="scope">
-          <el-image :src="scope.row.imageUrl" alt="" />
+          <el-image :src="scope.row.imageUrl" :preview-src-list="[scope.row.imageUrl]" alt="" />
         </template>
       </el-table-column>
 
