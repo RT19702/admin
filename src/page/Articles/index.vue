@@ -7,7 +7,6 @@
     <tab class="table" :cloumns="cloumns" :tableData="listItem" @editorMsg="editorMsg" @delMsg="delMsg"
       :loading="loading" />
 
-
     <el-dialog :title="formType === 'add' ? '新增' : '编辑'" :visible.sync="isShow">
       <inquery :modalData="modalData" :form.sync="formOperate" />
       <span slot="footer" class="dialog-footer">
@@ -15,7 +14,6 @@
         <el-button type="primary">确 定</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 
@@ -38,54 +36,20 @@ export default {
       formType: 'add',
       isShow: false,
       loading: true,
+      // Table 标题
       cloumns: [
-        {
-          label: "ID",
-          width: 100,
-          type: "id",
-        },
-        {
-          label: "文章标题",
-          type: "title",
-        },
-        {
-          label: "文章分类",
-        },
+        { label: "ID", width: 100, type: "id", },
+        { label: "文章标题", type: "title", },
+        { label: "文章分类", },
       ],
-      // 编辑框
-      formOperate: {
-        title: "",
-        class: "",
-        createDate: "",
-        imageUrl: ""
-      },
-      // 模态框
+      // Dialog 编辑框
+      formOperate: { title: "", class: "", createDate: "", imageUrl: "" },
+      // Dialog 模态框
       modalData: [
-        {
-          model: "title",
-          label: "文章标题",
-          type: "input",
-        },
-        {
-          model: "class",
-          label: "文章分类",
-          type: "select",
-          option: [
-            {
-              value: "",
-            },
-          ],
-        },
-        {
-          model: "imageUrl",
-          type: "upload",
-          label: "文章图片",
-        },
-        {
-          model: "createDate",
-          label: "创建日期",
-          type: "date",
-        },
+        { model: "title", label: "文章标题", type: "input", },
+        { model: "class", label: "文章分类", type: "select", option: [{ value: "", },], },
+        { model: "imageUrl", type: "upload", label: "文章图片", },
+        { model: "createDate", label: "创建日期", type: "date", },
       ],
       listItem: [] //文章数据
     }
