@@ -10,9 +10,17 @@ export const register = (params) => {
   })
 }
 
-export const listData = () => {
+export function listData() {
   return request({
     url: '/get/list',
     method: 'get',
+  })
+}
+
+export const delList = (params) => {
+  return request({
+    url: '/list/del',
+    method: 'post',
+    data: params
   })
 }

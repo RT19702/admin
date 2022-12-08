@@ -6,33 +6,15 @@
           <div class="images">
             <img class="" src="~@/assets/images/guanli.png" alt="" />
           </div>
-          <el-form
-            ref="loginForm"
-            :model="formData"
-            :rules="rules"
-            label-width="80px"
-            label-position="top"
-          >
+          <el-form ref="loginForm" :model="formData" :rules="rules" label-width="80px" label-position="top">
             <el-form-item label="账号" prop="username">
-              <el-input
-                @keyup.enter.native="submitFrom('formData')"
-                v-model="formData.username"
-              ></el-input>
+              <el-input @keyup.enter.native="submitFrom('formData')" v-model="formData.username"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input
-                @keyup.enter.native="submitFrom('formData')"
-                v-model="formData.password"
-              ></el-input>
+              <el-input @keyup.enter.native="submitFrom('formData')" v-model="formData.password"></el-input>
             </el-form-item>
-            <el-button
-              :loading="loading"
-              plain
-              native-type="submit"
-              class="button"
-              @click.prevent="submitFrom(formData)"
-              >登录</el-button
-            >
+            <el-button :loading="loading" plain native-type="submit" class="button"
+              @click.prevent="submitFrom(formData)">登录</el-button>
           </el-form>
         </el-card>
       </el-col>
@@ -73,7 +55,7 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {
     submitFrom(formData) {
@@ -110,15 +92,19 @@ export default {
   display: flex;
   align-items: center;
   justify-items: center;
+
   .images {
     text-align: center;
+
     img {
       width: 120px;
     }
   }
+
   .box {
     width: 100%;
   }
+
   .button {
     width: 100%;
   }

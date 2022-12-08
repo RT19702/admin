@@ -1,22 +1,8 @@
-import { listData } from "@/api";
-
 const state = {
-  listItem: []
 };
 const mutations = {
-  LISTITEM(state, data) {
-    state.listItem = data;
-  }
 };
 const actions = {
-  async listItem({ commit }, userInfo) {
-    // 传参给api/register
-    let result = await listData(userInfo);
-    console.log(result);
-    if (result.code == 200) {
-      commit('LISTITEM', result.data);
-    }
-  }
 };
 const getters = {};
 

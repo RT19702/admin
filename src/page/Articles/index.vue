@@ -1,24 +1,18 @@
 <template>
   <div>
     <el-card>
-      <search :searchTitle="title" :searchCategory="category" />
+      <search :searchTitle="searchTitle" :searchCategory="searchCategory" />
     </el-card>
 
-    <tab
-      class="table"
-      :formLabel="formLabel"
-      :tableData="listItem"
-      @eventMessage="editTab"
-    />
+    <tab class="table" :cloumns="cloumns" :tableData="listItem" @editorMsg="editorMsg" @delMsg="delMsg"
+      :loading="loading" />
 
-    <el-dialog
-      :title="formType === 'add' ? '新增' : '编辑'"
-      :visible.sync="isShow"
-    >
-      <inquery :formData="modalData" :form.sync="formOperate" />
+
+    <el-dialog :title="formType === 'add' ? '新增' : '编辑'" :visible.sync="isShow">
+      <inquery :modalData="modalData" :form.sync="formOperate" />
       <span slot="footer" class="dialog-footer">
         <el-button @click="isShow = false">取 消</el-button>
-        <el-button type="primary" @click="confirm">确 定</el-button>
+        <el-button type="primary">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -29,7 +23,7 @@
 import search from "@/components/Form/Search";
 import tab from "@/components/Form/Tab";
 import inquery from "@/components/Form/Inquery";
-import { mapState } from "vuex";
+import { delList, listData } from "@/api";
 export default {
   name: "AdminIndex",
   components: {
@@ -39,16 +33,31 @@ export default {
   },
   data() {
     return {
-      title: "文章标题",
-      category: "文章分类",
+      searchTitle: '文章标题',
+      searchCategory: '文章分类',
+      formType: 'add',
       isShow: false,
-      formType: "add",
+      loading: true,
+      cloumns: [
+        {
+          label: "ID",
+          width: 100,
+          type: "id",
+        },
+        {
+          label: "文章标题",
+          type: "title",
+        },
+        {
+          label: "文章分类",
+        },
+      ],
       // 编辑框
       formOperate: {
         title: "",
         class: "",
         createDate: "",
-        imageUrl:""
+        imageUrl: ""
       },
       // 模态框
       modalData: [
@@ -78,51 +87,31 @@ export default {
           type: "date",
         },
       ],
-      // Tab表格
-      formLabel: [
-        {
-          label: "ID",
-          width: 180,
-          type: "id",
-        },
-        {
-          label: "文章标题",
-          type: "title",
-        },
-        {
-          label: "文章分类",
-        },
-        // {
-        //   label: "文章主图",
-        //   width: 80,
-        //   type: "imageUrl",
-        // },
-        {
-          label: "创建时间",
-          type: "createDate",
-        },
-      ],
-    };
+      listItem: [] //文章数据
+    }
   },
   mounted() {
-    this.$store.dispatch("article/listItem");
+    this.getList()
   },
   methods: {
-    editTab(item) {
+    editorMsg(item) {
       this.isShow = true;
       this.formType = 'edit';
       this.formOperate.title = item.title;
       this.formOperate.createDate = item.createDate;
       this.formOperate.imageUrl = item.imageUrl
     },
-    confirm(){
-      
+    async delMsg(item) {
+      const { list: res } = await delList(item)
+      this.listItem = res
+    },
+    async getList() {
+      const { data: res } = await listData()
+      this.listItem = res
+      this.loading = false
     }
   },
   computed: {
-    ...mapState({
-      listItem: (state) => state.article.listItem,
-    }),
   },
 };
 </script>
