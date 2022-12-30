@@ -1,20 +1,20 @@
 <template>
   <div class="login-wrap">
     <el-row justify="center" type="flex" class="box">
-      <el-col :lg="8" :span="24">
+      <el-col :lg="8" :xs="16" :sm="12" :md="12" :span="24">
         <el-card class="box-card">
           <div class="images">
             <img class="" src="~@/assets/images/guanli.png" alt="" />
           </div>
           <el-form ref="loginForm" :model="formData" :rules="rules" label-width="80px" label-position="top">
-            <el-form-item label="账号" prop="username">
+            <el-form-item :label="$t('login.username')" prop="username">
               <el-input @keyup.enter.native="submitFrom('formData')" v-model="formData.username"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
+            <el-form-item :label="$t('login.password')" prop="password">
               <el-input @keyup.enter.native="submitFrom('formData')" v-model="formData.password"></el-input>
             </el-form-item>
             <el-button :loading="loading" plain native-type="submit" class="button"
-              @click.prevent="submitFrom(formData)">登录</el-button>
+              @click.prevent="submitFrom(formData)">{{ $t('login.logIn') }}</el-button>
           </el-form>
         </el-card>
       </el-col>

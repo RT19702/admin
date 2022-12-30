@@ -7,7 +7,7 @@
       </div>
       <div class="menu">
         <div v-for="item in menu" :key="item.name">
-          <h4 class="title">{{ item.name }}</h4>
+          <!-- <h4 class="title">{{ item.name }}</h4> -->
           <el-menu-item
             :index="item1.title"
             v-for="item1 in item.children"
@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     isCollapse() {
-      return this.$store.state.tab.isCollapse;
+      return this.$store.state.app.isCollapse;
     },
   },
 };

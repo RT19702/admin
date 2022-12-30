@@ -7,13 +7,13 @@
         :width="item.width">
       </el-table-column>
 
-      <el-table-column label="图片" prop="imageUrl">
+      <el-table-column label="图片" prop="imageUrl" align="center">
         <template slot-scope="scope">
           <el-image :src="scope.row.imageUrl" :preview-src-list="[scope.row.imageUrl]" alt="" />
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" label="操作" width="200">
+      <el-table-column fixed="right" label="操作" width="200" align="center">
         <template v-slot="scope">
           <el-button @click="handleClick(scope.row)" type="primary" size="small">编辑</el-button>
           <el-button @click="delClick(scope.row)" type="danger" size="small">删除</el-button>

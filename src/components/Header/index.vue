@@ -8,16 +8,16 @@
       <Breadcrumb />
     </div>
     <div class="information">
-      <el-dropdown>
+      <el-dropdown trigger="click" @command="handleSetLanguage">
         <div class="lang el-dropdown-link">
           <img src="~@/assets/images/language.png" alt="" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>中文</el-dropdown-item>
-          <el-dropdown-item>英文</el-dropdown-item>
+          <el-dropdown-item :disabled="language === 'zh'" command="zh">中文</el-dropdown-item>
+          <el-dropdown-item :disabled="language === 'en'" command="en">英文</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <Navbar/>
+      <Navbar />
     </div>
   </div>
 </template>
@@ -34,16 +34,22 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() { },
   methods: {
     fold() {
-      this.$store.commit("fold");
+      this.$store.commit("app/fold");
     },
+    handleSetLanguage(lang) {
+      this.$store.commit("app/SET_LANGUAGE", lang)
+    }
   },
   computed: {
     isCollapse() {
-      return this.$store.state.tab.isCollapse;
+      return this.$store.state.app.isCollapse;
     },
+    language() {
+      return this.$store.getters.language
+    }
   },
 };
 </script>
@@ -55,21 +61,26 @@ export default {
   height: 100%;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  .navigation{
+
+  .navigation {
     display: flex;
     align-items: center;
   }
+
   .icon {
     font-size: 30px;
     margin-right: 15px;
     cursor: pointer;
   }
+
   .information {
     display: flex;
+
     .lang {
       margin-right: 15px;
     }
-    .lang img{
+
+    .lang img {
       width: 35px;
       height: 35px;
     }

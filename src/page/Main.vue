@@ -1,14 +1,17 @@
 <template>
   <el-container>
     <el-aside width="auto">
-      <Aside/>
+      <Aside />
     </el-aside>
     <el-container>
       <el-header>
-        <Header/>
+        <Header />
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <!-- <router-view></router-view> -->
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </el-main>
     </el-container>
   </el-container>
@@ -29,11 +32,12 @@ export default {
     return {};
   },
 
-  mounted() {},
+  mounted() { },
 
   methods: {},
 };
 </script>
 
 <style lang="less" scoped>
+
 </style>
